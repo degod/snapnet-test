@@ -29,13 +29,13 @@
                 <select name="status" class="form-control">
                     <option value="">Select a Status</option>
                     @foreach($statuses as $status)
-                    <option value="{{ $status }}" @if($status->id==$task->status) 'selected' @endif>{{ ucfirst($status) }}</option>
+                    <option value="{{ $status }}" @if($status==$task->status) 'selected' @endif>{{ ucfirst($status) }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Due Date</label>
-                <input type="date" name="due_date" class="form-control">
+                <input type="date" name="due_date" class="form-control" value="{{ $task->due_date }}">
             </div>
 
             <button class="btn btn-primary">Save Task</button>
