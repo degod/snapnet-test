@@ -13,17 +13,29 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Snapnet Test</a>
+            <a class="navbar-brand" href="/">Snapnet Test</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link  {{ request()->routeIs('view.projects') ? '': 'active' }}" aria-current="page" href="/">Home</a>
+                        <a class="nav-link  {{ request()->routeIs('view.projects') ? '': 'active' }}" aria-current="page" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('view.projects') ? 'active': '' }}" href="{{ route('view.projects') }}">Projects</a>
+                        <a class="nav-link {{ request()->routeIs('view.projects') ? 'active': '' }}" href="{{ route('view.projects') }}">{{ __('Projects') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active': '' }}" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <button class="nav-link">
+                                {{ __('Log Out') }}
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>

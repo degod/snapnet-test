@@ -9,7 +9,6 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Ensure admin exists
         User::firstOrCreate(
             ['email' => 'admin@admin.com'],
             [
@@ -19,7 +18,6 @@ class UserSeeder extends Seeder
             ]
         );
 
-        // Generate additional users if needed
         User::factory(5)->create();
     }
 }

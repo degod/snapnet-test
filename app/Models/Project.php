@@ -14,10 +14,16 @@ class Project extends Model
 
     protected $fillable = [
         'title',
+        'user_id',
     ];
 
     public function tasks()
     {
         return $this->hasMany(Task::class)->orderBy('id', 'DESC');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

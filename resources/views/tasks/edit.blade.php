@@ -35,7 +35,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Due Date</label>
-                <input type="date" name="due_date" class="form-control" value="{{ $task->due_date }}">
+                <input type="date" name="due_date" class="form-control" value="{{ explode(' ', $task->due_date)[0] }}">
             </div>
 
             <button class="btn btn-primary">Save Task</button>

@@ -18,10 +18,16 @@ class Task extends Model
         'status',
         'due_date',
         'project_id',
+        'user_id',
     ];
 
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

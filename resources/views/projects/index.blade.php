@@ -18,8 +18,8 @@
         <tr>
             <th scope="row">{{ $project->id }}</th>
             <td>{{ $project->title }}</td>
-            <td>{{ \Carbon\Carbon::parse($project->created_at)->format('h:i A F jS, Y') }}</td>
-            <td>{{ $project->created_by ?? 'N/A' }}</td>
+            <td>{{ \Carbon\Carbon::parse($project->created_at)->format('g:ia F jS, Y') }}</td>
+            <td>{{ $project->user_id ? $project->user->name : 'N/A' }}</td>
             <td><a href="{{ route('view.project-details', ['project'=>$project]) }}" class="btn btn-warning">View tasks</a></td>
         </tr>
         @empty

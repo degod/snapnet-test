@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::find(rand(1, 5)) ?? User::factory()->create();
+
         return [
-            'title' => $this->faker->sentence()
+            'title' => $this->faker->sentence(),
+            'user_id' => $user->id,
         ];
     }
 }

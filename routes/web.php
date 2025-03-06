@@ -17,10 +17,9 @@ Route::get('/', function () {
     ]);
 });
 
-// Dashboard - accessible to all authenticated users
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return view('dashboard');
     })->name('dashboard');
 });
 
@@ -28,7 +27,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // Authentication routes
@@ -37,18 +35,7 @@ require __DIR__ . '/auth.php';
 // Project Routes
 Route::prefix('project')->middleware('auth')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('view.projects');
-
-    Route::get('/{project}/show', [ProjectController::class, 'show'])
-        ->name('view.project-details');
-
-    // Admin-only project management
-    Route::middleware('role:admin')->group(function () {
-        Route::get('/create', [ProjectController::class, 'create'])->name('create.project');
-        Route::post('/create', [ProjectController::class, 'store'])->name('store.project');
-        Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit.project');
-        Route::patch('/{project}', [ProjectController::class, 'update'])->name('update.project');
-        Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('delete.project');
-    });
+    Route::get('/{project}/show', [ProjectController::class, 'show'])->name('view.project-details');
 });
 
 // Task Routes
@@ -56,9 +43,8 @@ Route::prefix('task')->middleware('auth')->group(function () {
     Route::get('/create', [TaskController::class, 'createTask'])->name('create.task');
     Route::post('/create', [TaskController::class, 'storeTask'])->name('create.task-action');
 
-    Route::middleware('role:admin')->group(function () {
-        Route::get('/{task}/edit', [TaskController::class, 'editTask'])->name('edit.task');
-        Route::post('/{task}/edit', [TaskController::class, 'updateTask'])->name('edit.task-action');
-        Route::delete('/{task}', [TaskController::class, 'destroyTask'])->name('delete.task');
-    });
+    // Route::middleware('role:admin')->group(function () {
+    Route::get('/{task}/edit', [TaskController::class, 'editTask'])->name('edit.task');
+    Route::post('/{task}/edit', [TaskController::class, 'updateTask'])->name('edit.task-action');
+    // });
 });

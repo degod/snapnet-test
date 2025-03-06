@@ -3,7 +3,7 @@
 
 @section('body')
 <h1>Related Tasks</h1>
-<a href="{{ route('view.projects') }}" class="btn btn-secondary mb-5">Back to Project</a>
+<a href="{{ route('view.projects') }}" class="btn btn-secondary mb-5">Back to Projects</a>
 <a href="{{ route('create.task') }}" class="btn btn-danger mb-5">Create New Task</a>
 <table class="table table-striped">
     <thead>
@@ -13,7 +13,7 @@
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Status</th>
-            <th scope="col">Date Created</th>
+            <th scope="col">Created</th>
             <th scope="col">Due Date</th>
             <th scope="col">Action</th>
         </tr>
@@ -26,7 +26,10 @@
             <td>{{ $task->title }}</td>
             <td>{{ $task->description }}</td>
             <td>{{ $task->status }}</td>
-            <td>{{ \Carbon\Carbon::parse($task->created_at)->format('h:i A F jS, Y') }}</td>
+            <td>
+                {{ \Carbon\Carbon::parse($task->created_at)->format('g:ia F jS, Y') }}<br>
+                <small><i><b>By:</b> {{ $task->user_id ? $task->user->name : 'N/A' }}</i></small>
+            </td>
             <td>{{ \Carbon\Carbon::parse($task->due_date)->format('h:i A F jS, Y') }}</td>
             <td><a href="{{ route('edit.task', $task) }}" class="btn btn-danger btn-sm mt-3">Edit Task</a></td>
         </tr>

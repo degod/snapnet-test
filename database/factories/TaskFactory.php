@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class TaskFactory extends Factory
     {
         // Create a project if none exists
         $project = Project::find(rand(1, 5)) ?? Project::factory()->create();
+        $user = User::find(rand(1, 5)) ?? User::factory()->create();
 
         return [
             'title' => $this->faker->sentence(),
@@ -26,6 +28,7 @@ class TaskFactory extends Factory
             'status' => str_replace("_", "-", array_keys(task_statuses())[rand(0, 2)]),
             'due_date' => $this->faker->dateTimeThisYear(),
             'project_id' => $project->id,
+            'user_id' => $user->id,
         ];
     }
 }
