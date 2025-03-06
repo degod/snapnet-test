@@ -40,23 +40,14 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($projects as $project)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{ $project->id }}</th>
+                    <td>{{ $project->title }}</td>
+                    <td>{{ \Carbon\Carbon::parse($project->created_at)->format('h:i A F jS, Y') }}</td>
+                    <td>{{ $project->created_by ?? 'N/A' }}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
