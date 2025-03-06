@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function createTask()
     {
-        $statuses = array_keys(task_statuses());
+        $statuses = array_map(fn($status) => str_replace('_', '-', $status), array_keys(task_statuses()));
         $projects = Project::all();
         return view('tasks.create', compact('statuses', 'projects'));
     }
@@ -35,7 +35,7 @@ class TaskController extends Controller
      */
     public function editTask(Task $task)
     {
-        $statuses = array_keys(task_statuses());
+        $statuses = array_map(fn($status) => str_replace('_', '-', $status), array_keys(task_statuses()));
         $projects = Project::all();
         return view('tasks.create', compact('statuses', 'projects'));
     }
