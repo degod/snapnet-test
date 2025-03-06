@@ -17,5 +17,11 @@ class Task extends Model
         'description',
         'status',
         'due_date',
+        'project_id',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
