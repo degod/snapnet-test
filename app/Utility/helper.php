@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\TaskStatus;
+use App\Enums\UserRole;
 
 /**
  * @throws ReflectionException
@@ -43,4 +44,9 @@ function get_enum(string $value, string $className)
 function task_statuses(): array
 {
     return enums(TaskStatus::class, true);
+}
+
+function user_roles(): array
+{
+    return enums(UserRole::class, true);
 }
