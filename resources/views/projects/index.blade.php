@@ -14,15 +14,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($projects as $project)
+        @forelse($projects as $project)
         <tr>
             <th scope="row">{{ $project->id }}</th>
             <td>{{ $project->title }}</td>
             <td>{{ \Carbon\Carbon::parse($project->created_at)->format('h:i A F jS, Y') }}</td>
             <td>{{ $project->created_by ?? 'N/A' }}</td>
-            <td><a href="{{ route('view.project-details', ['id'=>$project]) }}" class="btn btn-warning">View tasks</a></td>
+            <td><a href="{{ route('view.project-details', ['project'=>$project]) }}" class="btn btn-warning">View tasks</a></td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <th colspan="5" class="text-center">
+                No Project Yet<br>
+            </th>
+        </tr>
+        @endforelse
     </tbody>
 </table>
 @endsection

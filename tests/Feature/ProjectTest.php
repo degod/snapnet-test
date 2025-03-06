@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Project;
 use App\Models\Task;
 
 beforeEach(function () {
@@ -13,7 +14,14 @@ test('view all projects', function () {
 });
 
 test('view single project', function () {
-    $this->get('/project/1/show')
+    $project = Project::get()->first();
+    $tasks = $project->tasks ?? null;
+
+    $this->get(route('view.project-details', ['project' => $project]))
         ->assertStatus(200)
         ->assertSee('Related Tasks');
+    expect($project)
+        ->toBeObject();
+    expect($tasks)
+        ->toBeObject();
 });

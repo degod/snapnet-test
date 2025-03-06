@@ -9,5 +9,5 @@ Route::get('/', function () {
 
 Route::prefix('project')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('view.projects');
-    Route::get('/{id}/show', [ProjectController::class, 'show'])->name('view.project-details');
+    Route::get('/{project}/show', [ProjectController::class, 'show'])->name('view.project-details');
 });

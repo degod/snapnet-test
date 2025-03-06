@@ -27,7 +27,7 @@
             <td>{{ $task->status }}</td>
             <td>{{ \Carbon\Carbon::parse($task->created_at)->format('h:i A F jS, Y') }}</td>
             <td>{{ \Carbon\Carbon::parse($task->due_date)->format('h:i A F jS, Y') }}</td>
-            <td>{{ $project->created_by ?? 'N/A' }}</td>
+            <td><a href="#" class="btn btn-danger btn-sm mt-3">Edit Task</a></td>
         </tr>
         @empty
         <tr>

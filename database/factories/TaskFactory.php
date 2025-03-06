@@ -22,7 +22,7 @@ class TaskFactory extends Factory
 
         return [
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->numberBetween(1, 10),
+            'description' => $this->faker->sentence(),
             'status' => str_replace("_", "-", array_keys(task_statuses())[rand(0, 2)]),
             'due_date' => $this->faker->dateTimeThisYear(),
             'project_id' => $project->id,
