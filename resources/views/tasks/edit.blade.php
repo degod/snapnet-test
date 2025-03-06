@@ -12,7 +12,7 @@
                 <select name="project_id" class="form-control">
                     <option value="">Select a Project</option>
                     @foreach($projects as $project)
-                    <option value="{{ $project->id }}" @if($project->id==$task->project_id) 'selected' @endif>{{ $project->title }}</option>
+                    <option value="{{ $project->id }}" @if($project->id==$task->project_id) selected @endif>{{ $project->title }}</option>
                     @endforeach
                 </select>
             </div>
@@ -29,7 +29,7 @@
                 <select name="status" class="form-control">
                     <option value="">Select a Status</option>
                     @foreach($statuses as $status)
-                    <option value="{{ $status }}" @if($status==$task->status) 'selected' @endif>{{ ucfirst($status) }}</option>
+                    <option value="{{ $status }}" @if($status==$task->status) selected @endif>{{ ucfirst($status) }}</option>
                     @endforeach
                 </select>
             </div>
