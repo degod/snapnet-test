@@ -22,14 +22,14 @@ class StoreTaskRequest extends FormRequest
      */
     public function rules(): array
     {
-        $statusOptions = array_keys(task_statuses());
+        $statusOptions = array_map(fn($status) => str_replace('_', '-', $status), array_keys(task_statuses()));
 
         return [
             'title' => 'required|string|max:255|unique:tasks,title',
             'description' => 'required|string|max:255',
             'status' => ['required', Rule::in($statusOptions)],
             'project_id' => 'required|exists:projects,id',
-            'due_date' => 'required|date|before_or_equal:today',
+            'due_date' => 'required|date|after_or_equal:today',
         ];
     }
 

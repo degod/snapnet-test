@@ -9,7 +9,7 @@
             {!! csrf_field() !!}
             <div class="mb-3">
                 <label class="form-label">Project</label>
-                <select name="status" class="form-control">
+                <select name="project_id" class="form-control">
                     <option value="">Select a Project</option>
                     @foreach($projects as $project)
                     <option value="{{ $project->id }}">{{ $project->title }}</option>

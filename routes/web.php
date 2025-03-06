@@ -16,6 +16,6 @@ Route::prefix('project')->group(function () {
 Route::prefix('task')->group(function () {
     Route::get('/create', [TaskController::class, 'createTask'])->name('create.task');
     Route::post('/create', [TaskController::class, 'storeTask'])->name('create.task-action');
-    Route::get('/{project}/edit', [TaskController::class, 'editTask'])->name('edit.task');
-    Route::post('/{project}/edit', [TaskController::class, 'updateTask'])->name('edit.task-action');
+    Route::get('/{task}/edit', [TaskController::class, 'editTask'])->name('edit.task');
+    Route::post('/{task}/edit', [TaskController::class, 'updateTask'])->name('edit.task-action');
 });

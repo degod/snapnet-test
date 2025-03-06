@@ -24,7 +24,6 @@ class TaskController extends Controller
      */
     public function storeTask(StoreTaskRequest $request)
     {
-        dd($request->all());
         $task = Task::create($request->all());
         $request->session()->flash('success', "Task created successfully");
 
