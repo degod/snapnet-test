@@ -4,63 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Project;
 use App\Models\Task;
 
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createTask()
     {
-        //
+        $statuses = array_keys(task_statuses());
+        $projects = Project::all();
+        return view('tasks.create', compact('statuses', 'projects'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function storeTask(StoreTaskRequest $request)
     {
-        //
-    }
+        dd($request->all());
+        $task = Task::create($request->all());
+        $request->session()->flash('success', "Task created successfully");
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
+        return redirect(route('view.project-details', ['project' => $task->project]));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function editTask(Task $task)
     {
-        //
+        $statuses = array_keys(task_statuses());
+        $projects = Project::all();
+        return view('tasks.create', compact('statuses', 'projects'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function updateTask(UpdateTaskRequest $request, Task $task)
     {
-        //
-    }
+        $task = Task::update($request->except('_token'));
+        $request->session()->flash('success', "Task updated successfully");
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
-    {
-        //
+        return redirect()->back();
     }
 }
