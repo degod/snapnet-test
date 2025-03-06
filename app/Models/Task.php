@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\SendTaskReminderJob;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,6 +21,17 @@ class Task extends Model
         'project_id',
         'user_id',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($task) {
+            if ($task->due_date && now()->lt($task->due_date)) {
+                SendTaskReminderJob::dispatch($task)->onQueue('emails');
+            }
+        });
+    }
 
     public function project()
     {
