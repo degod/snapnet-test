@@ -45,9 +45,9 @@ class TaskController extends Controller
      */
     public function updateTask(UpdateTaskRequest $request, Task $task)
     {
-        $task = Task::update($request->except('_token'));
+        $task->update($request->except('_token'));
         $request->session()->flash('success', "Task updated successfully");
 
-        return redirect()->back();
+        return redirect(route('view.project-details', ['project' => $task->project]));
     }
 }
