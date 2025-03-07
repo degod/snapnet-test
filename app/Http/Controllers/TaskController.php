@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Jobs\SendTaskReminderJob;
 use App\Models\Project;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -25,6 +26,7 @@ class TaskController extends Controller
      */
     public function storeTask(StoreTaskRequest $request)
     {
+        $request['user_id'] = Auth::user()->id;
         $task = Task::create($request->all());
         $request->session()->flash('success', "Task created successfully");
 

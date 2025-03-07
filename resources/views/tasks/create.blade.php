@@ -12,30 +12,30 @@
                 <select name="project_id" class="form-control">
                     <option value="">Select a Project</option>
                     @foreach($projects as $project)
-                    <option value="{{ $project->id }}">{{ $project->title }}</option>
+                    <option value="{{ $project->id }}" @if($project->id==old('project_id')) selected @endif>{{ $project->title }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Title</label>
-                <input type="text" name="title" class="form-control">
+                <input type="text" name="title" class="form-control" value="{{ old('title') }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <textarea class="form-control" name="description" rows="3"></textarea>
+                <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>
                 <select name="status" class="form-control">
                     <option value="">Select a Status</option>
                     @foreach($statuses as $status)
-                    <option value="{{ str_replace('_', '-', $status) }}">{{ ucfirst($status) }}</option>
+                    <option value="{{ $status }}" @if($status==old('status')) selected @endif>{{ ucfirst($status) }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Due Date</label>
-                <input type="date" name="due_date" class="form-control">
+                <input type="date" name="due_date" class="form-control" value="{{ old('due_date') }}">
             </div>
 
             <button class="btn btn-primary">Save Task</button>

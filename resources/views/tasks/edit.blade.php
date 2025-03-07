@@ -12,30 +12,30 @@
                 <select name="project_id" class="form-control">
                     <option value="">Select a Project</option>
                     @foreach($projects as $project)
-                    <option value="{{ $project->id }}" @if($project->id==$task->project_id) selected @endif>{{ $project->title }}</option>
+                    <option value="{{ $project->id }}" @if($project->id==($task->project_id ?? old('project_id'))) selected @endif>{{ $project->title }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" value="{{ $task->title }}">
+                <input type="text" name="title" class="form-control" value="{{ $task->title ?? old('title') }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <textarea class="form-control" name="description" rows="3">{{ $task->description }}</textarea>
+                <textarea class="form-control" name="description" rows="3">{{ $task->description ?? old('description') }}</textarea>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>
                 <select name="status" class="form-control">
                     <option value="">Select a Status</option>
                     @foreach($statuses as $status)
-                    <option value="{{ $status }}" @if($status==$task->status) selected @endif>{{ ucfirst($status) }}</option>
+                    <option value="{{ $status }}" @if($status==($task->status ?? old('status'))) selected @endif>{{ ucfirst($status) }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Due Date</label>
-                <input type="date" name="due_date" class="form-control" value="{{ explode(' ', $task->due_date)[0] }}">
+                <input type="date" name="due_date" class="form-control" value="{{ explode(' ', $task->due_date)[0] ?? old('due_date') }}">
             </div>
 
             <button class="btn btn-primary">Save Task</button>
