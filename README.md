@@ -33,13 +33,13 @@ Before you start, ensure you have the following installed:
 3. **Install Composer dependencies:**
 
     ```bash
-    composer install
+    composer install && cp .env.example .env && php artisan key:generate
     ```
 
 4. **Start the application with Laravel Sail:**
 
     ```bash
-    docker-compose up -d
+    docker-compose up -d --build
     ```
 
 5. **Logging in to container shell:**
@@ -51,7 +51,7 @@ Before you start, ensure you have the following installed:
 6. **Completing the setup:**
 
     ```bash
-    cp .env.example .env && php artisan key:generate && php artisan migrate:fresh && php artisan test && php artisan db:seed
+    php artisan migrate:fresh && php artisan test && php artisan db:seed
     ```
 
 7. **Exiting container shell:**
