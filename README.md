@@ -42,29 +42,31 @@ Before you start, ensure you have the following installed:
     docker-compose up -d --build
     ```
 
-5. **Logging in to container shell:**
+5. **NPM Resource Installation:**
+   Because we had to borrow some resources from viteJS, we need to run the additional code below:
+
+    ```bash
+    npm install && npm run dev
+    ```
+
+6. **Logging in to container shell on a fresh terminal:**
+    - First make sure you on the project directory on this fresh terminal: `_STEP 2 ABOVE_`
+    - Then run the below:
 
     ```bash
     docker exec -it snapnet_app bash
     ```
 
-6. **Completing the setup:**
+7. **Completing the setup:**
 
     ```bash
     php artisan migrate:fresh && php artisan test && php artisan db:seed
     ```
 
-7. **Exiting container shell:**
+8. **Exiting container shell:**
 
     ```bash
     exit
-    ```
-
-8. **NPM Resource Installation:**
-   Because we had to borrow some resources from viteJS, we need to run the additional code below:
-
-    ```bash
-    npm install && npm run dev
     ```
 
 9. **Accessing the application:**
