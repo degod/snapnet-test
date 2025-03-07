@@ -51,7 +51,7 @@ Before you start, ensure you have the following installed:
 6. **Completing the setup:**
 
     ```bash
-    php artisan migrate:fresh && php artisan test && php artisan db:seed
+    cp .env.example .env && php artisan key:generate && php artisan migrate:fresh && php artisan test && php artisan db:seed
     ```
 
 7. **Exiting container shell:**
@@ -60,7 +60,7 @@ Before you start, ensure you have the following installed:
     exit
     ```
 
-8. **Accessing the application:**
+8. **NPM Resource Installation:**
    Because we had to borrow some resources from viteJS, we need to run the additional code below:
 
     ```bash
