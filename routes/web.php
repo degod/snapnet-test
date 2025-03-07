@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -43,8 +44,11 @@ Route::prefix('task')->middleware('auth')->group(function () {
     Route::get('/create', [TaskController::class, 'createTask'])->name('create.task');
     Route::post('/create', [TaskController::class, 'storeTask'])->name('create.task-action');
 
-    // Route::middleware('role:admin')->group(function () {
     Route::get('/{task}/edit', [TaskController::class, 'editTask'])->name('edit.task');
     Route::post('/{task}/edit', [TaskController::class, 'updateTask'])->name('edit.task-action');
-    // });
+});
+
+// AdminJob Routes
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/jobs', [JobController::class, 'index'])->name('view.failed-jobs');
 });

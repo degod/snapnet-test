@@ -25,9 +25,6 @@ class TaskReminderMail extends Mailable
             ->view('emails.task_reminder', ['task' => $this->task]);
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(

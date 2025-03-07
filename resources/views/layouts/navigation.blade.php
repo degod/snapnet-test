@@ -21,6 +21,11 @@
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('Profile') }}
                     </x-nav-link>
+                    @role('admin')
+                    <x-nav-link :href="route('view.failed-jobs')" :active="request()->routeIs('view.failed-jobs')">
+                        {{ __('Failed Jobs') }}
+                    </x-nav-link>
+                    @endrole
                     <form method="POST" action="{{ route('logout') }}" class="mt-5">
                         @csrf
 
@@ -66,6 +71,11 @@
             <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                 {{ __('Profile') }}
             </x-responsive-nav-link>
+            @role('admin')
+            <x-responsive-nav-link :href="route('view.failed-jobs')" :active="request()->routeIs('view.failed-jobs')">
+                {{ __('Failed Jobs') }}
+            </x-responsive-nav-link>
+            @endrole
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 

@@ -31,4 +31,9 @@
         @endforelse
     </tbody>
 </table>
+@if(!empty($projects))
+<nav aria-label="...">
+    {!! $projects->links() !!}
+</nav>
+@endif
 @endsection

@@ -28,6 +28,11 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active': '' }}" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                     </li>
+                    @role('admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('view.failed-jobs') ? 'active': '' }}" href="{{ route('view.failed-jobs') }}">{{ __('Failed Jobs') }}</a>
+                    </li>
+                    @endrole
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
