@@ -61,10 +61,27 @@ Before you start, ensure you have the following installed:
     ```
 
 8. **Accessing the application:**
+   Because we had to borrow some resources from viteJS, we need to run the additional code below:
+
+    ```bash
+    npm install && npm run dev
+    ```
+
+9. **Accessing the application:**
 
 -   The application should now be running on your local environment.
 -   Navigate to `http://localhost:8000` in your browser to access the application.
 -   To access the database, go to `http://localhost:8088/`.
+    -   USER: `admin`
+    -   PASS: `secret`
+-   To login to the app:
+    -   With the "Admin" privilege:
+        -   USER: `admin@admin.com`
+        -   PASS: `secretadmin`
+            This should work as long as you ran the above migration code
+    -   With a regular "User" privilege:
+        -   USER: _[Pick a User Email from the users table in the DB]_
+        -   PASS: `password`
 
 ## Contributing
 
